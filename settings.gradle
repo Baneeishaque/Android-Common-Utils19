@@ -15,8 +15,4 @@ project(':Utils14:common14').projectDir = new File(settingsDir, './Utils17/Utils
 include ':Resources:common'
 project(':Resources:common').projectDir = new File(settingsDir, './Utils17/Utils16/Utils14/Resources/common')
 
-include ':Utils11:common11'
-project(':Utils11:common11').projectDir = new File(settingsDir, './Utils17/Utils16/Utils14/Utils11/common11')
 
-include ':Utils1:common1'
-project(':Utils1:common1').projectDir = new File(settingsDir, './Utils17/Utils16/Utils14/Utils11/Utils9/Utils7/Utils4/Utils3/Utils1/common1')
