@@ -13,6 +13,6 @@ include ':Utils14:common14'
 project(':Utils14:common14').projectDir = new File(settingsDir, './Utils17/Utils16/Utils14/common14')
 
 include ':Resources:common'
-project(':Resources:common').projectDir = new File(settingsDir, './Utils17/Utils16/Utils14/Resources/common')
+project(':Resources:common').projectDir = new File(settingsDir, './Utils19/Utils17/Utils16/Utils14/Resources/common')
 
 

@@ -103,5 +103,4 @@ dependencies {
 
     implementation project(path: ':Utils16:common16')
     implementation project(path: ':Utils14:common14')
-
 }
