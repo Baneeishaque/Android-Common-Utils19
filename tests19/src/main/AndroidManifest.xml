@@ -12,7 +12,8 @@
         android:theme="@style/AppTheme"
         tools:replace="android:allowBackup">
 
-        <activity android:name=".PassBookActivity">
+        <activity android:name=".PassBookActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
