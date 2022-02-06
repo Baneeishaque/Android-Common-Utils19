@@ -30,4 +30,14 @@ public class ExceptionUtils19 {
 
         handleException(true, applicationContext, tag, exception);
     }
+
+    public static void handleException(boolean isGuiPresent, Context applicationContext, final String tag, String exception) {
+
+        ExceptionUtils1.handleException(isGuiPresent, applicationContext, tag, exception);
+    }
+
+    public static void handleExceptionOnGui(Context applicationContext, final String tag, String exception) {
+
+        handleException(true, applicationContext, tag, exception);
+    }
 }
