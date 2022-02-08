@@ -24,7 +24,6 @@ import java.util.ArrayList;
 
 import ndk.utils_android1.LogUtils1;
 import ndk.utils_android1.ProgressBarUtils1;
-import ndk.utils_android19.ExceptionUtils19;
 
 public abstract class SendSmsFromFast2SmsNetworkTask extends AsyncTask<Void, Void, String[]> {
 
@@ -101,7 +100,7 @@ public abstract class SendSmsFromFast2SmsNetworkTask extends AsyncTask<Void, Voi
 
         if (networkActionResponseArray[0].equals("1")) {
 
-            LogUtils1.debugOnGui("Error : " + networkActionResponseArray[1] + ", Try again..",activityContext,applicationName);
+            LogUtils1.debugOnGui(applicationName, "Error : " + networkActionResponseArray[1] + ", Try again..",activityContext);
 
         } else {
 
