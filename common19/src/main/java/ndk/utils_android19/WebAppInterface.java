@@ -6,21 +6,18 @@ import android.webkit.JavascriptInterface;
 public class WebAppInterface {
 
     private Context mContext;
-    private FurtherActions mfurtherActions;
+    private FurtherActions mFurtherActions;
 
     /**
      * Instantiate the interface and set the context
      */
     public WebAppInterface(Context context, FurtherActions furtherActions) {
         mContext = context;
-        mfurtherActions = furtherActions;
+        mFurtherActions = furtherActions;
     }
 
-    /**
-     * Show a toast from the web page
-     */
     @JavascriptInterface
     public void doActions() {
-        mfurtherActions.furtherActions();
+        mFurtherActions.furtherActions();
     }
 }
