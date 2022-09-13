@@ -42,12 +42,12 @@ RUN yes | android-sdk-linux/cmdline-tools/latest/bin/sdkmanager --licenses \
 
 ENV ANDROID_SDK_ROOT="$HOME/android-sdk-linux"
 
-RUN sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-key C99B11DEB97541F0 \
- && sudo apt-add-repository https://cli.github.com/packages \
- && sudo apt update \
- && sudo apt install -y \
-    gh \
- && sudo rm -rf /var/lib/apt/lists/*
+# RUN sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-key C99B11DEB97541F0 \
+#  && sudo apt-add-repository https://cli.github.com/packages \
+#  && sudo apt update \
+#  && sudo apt install -y \
+#     gh \
+#  && sudo rm -rf /var/lib/apt/lists/*
 
 RUN sudo apt-get update \
  && sudo apt-get install -y \
