@@ -34,8 +34,8 @@ public abstract class WebViewCoverActivity extends ActivityWithContexts14 {
         WebSettings webSettings = webView.getSettings();
         webSettings.setJavaScriptEnabled(true);
         webSettings.setDomStorageEnabled(true);
-        webSettings.setAppCacheEnabled(true);
-        webSettings.setAppCachePath(getCacheDir().getPath());
+        // webSettings.setAppCacheEnabled(true);
+        // webSettings.setAppCachePath(getCacheDir().getPath());
         webSettings.setAllowFileAccess(true);
 
         if (!configureUserAgent().isEmpty()) {
