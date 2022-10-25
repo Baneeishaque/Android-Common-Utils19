@@ -107,6 +107,7 @@ android {
         checkReleaseBuilds false
         abortOnError false
     }
+    namespace 'ndk.utils_android19.tests'
 }
 
 dependencies {
