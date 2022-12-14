@@ -113,7 +113,7 @@ public abstract class PassBookActivityBase extends WriteExternalStoragePermissio
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
 
-        getMenuInflater().inflate(R.menu.pass_book, menu);
+        getMenuInflater().inflate(ndk.utils_android16.R.menu.pass_book, menu);
         return true;
     }
 
@@ -126,7 +126,7 @@ public abstract class PassBookActivityBase extends WriteExternalStoragePermissio
 
         final File passBookPdf = new File(new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS), configureApplicationName()) + "/Pass_Book_" + currentTimeStamp + ".pdf");
 
-        if (id == R.id.menu_item_save) {
+        if (id == ndk.utils_android16.R.id.menu_item_save) {
 
             getRuntimePermission(() -> writePassBookPdf(currentActivityContext, passBookPdf, configureApplicationName(), currentTimeStamp, configureCurrentAccountShortName(), configureCurrentAccountLongName()), () -> {
 
