@@ -82,7 +82,7 @@ public class CheckAndUpdateTaskFireStore extends AsyncTask<Void, Void, String[]>
     @Override
     protected void onPostExecute(final String[] networkActionResponseArray) {
 
-        NetworkUtils1.displayNetworkActionResponse(applicationName, networkActionResponseArray);
+        NetworkUtils1.displayNetworkActionResponse(applicationName, networkActionResponseArray, currentActivity);
 
         if (networkActionResponseArray[0].equals("1")) {
 
@@ -116,7 +116,7 @@ public class CheckAndUpdateTaskFireStore extends AsyncTask<Void, Void, String[]>
 
                 } else {
 
-                    LogUtils1.debug(applicationName, "Latest Version...");
+                    LogUtils1.debug(applicationName, "Latest Version...", applicationContext);
 
                     if (!securityFlag) {
 
