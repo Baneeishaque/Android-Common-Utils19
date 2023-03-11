@@ -5,8 +5,7 @@ apply plugin: 'kotlin-android-extensions'
 
 android {
 
-    compileSdkVersion 33
-    buildToolsVersion "30.0.3"
+    compileSdk 33
 
     defaultConfig {
 
