@@ -25,13 +25,6 @@ steps:
       path: $(Build.SourcesDirectory)/.gradle
     displayName: Project Specific Gradle Cache
 
-  - task: Cache@2.198.0
-    inputs:
-      key: 'projectSpecificBuildFolder | "$(Agent.OS)"'
-      restoreKeys: projectSpecificBuildFolder
-      path: $(Build.SourcesDirectory)/build
-    displayName: Project Specific Build Folder Cache
-
   - task: JavaToolInstaller@0.211.0
     inputs:
       versionSpec: "17"
