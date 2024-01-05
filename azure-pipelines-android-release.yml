@@ -18,13 +18,6 @@ steps:
       path: $(GRADLE_USER_HOME)
     displayName: Gradle User Home Cache
 
-  - task: Cache@2.198.0
-    inputs:
-      key: 'projectSpecificGradleCache | "$(Agent.OS)"'
-      restoreKeys: projectSpecificGradleCache
-      path: $(Build.SourcesDirectory)/.gradle
-    displayName: Project Specific Gradle Cache
-
   - task: JavaToolInstaller@0.211.0
     inputs:
       versionSpec: "17"
