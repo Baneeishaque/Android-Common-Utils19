@@ -114,7 +114,7 @@ dependencies {
     implementation project(path: ':Utils19:common19')
     
     implementation 'androidx.appcompat:appcompat:1.6.1'
-    implementation 'androidx.core:core-ktx:1.10.0'
+    implementation 'androidx.core:core-ktx:1.12.0'
 
     implementation project(path: ':Utils16:common16')
     implementation project(path: ':Utils14:common14')
