@@ -3,7 +3,7 @@ apply plugin: 'kotlin-android'
 
 android {
 
-    compileSdk 33
+    compileSdk 34
 
     defaultConfig {
 
@@ -78,12 +78,6 @@ android {
     }
 
 //    viewBinding.enabled = true
-
-    compileOptions {
-
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
-    }
 
     kotlinOptions {
 
