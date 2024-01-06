@@ -2,8 +2,8 @@ package ndk.utils_android19.activities;
 
 import android.os.Bundle;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.util.Pair;
 
 import ndk.utils_android14.ActivityWithContexts14;
 import ndk.utils_android16.activities.LoginBundleActivity;
@@ -17,16 +17,16 @@ import ndk.utils_android19.models.PairOfStringsModel;
 
 public abstract class SplashWithAutomatedUpdateActivity extends ActivityWithContexts14 {
 
-    public abstract String configure_GET_CONFIGURATION_URL();
+    public abstract String configureGetConfigurationUrl();
 
-    public abstract String configure_UPDATE_URL();
+    public abstract String configureUpdateUrl();
 
     public abstract Class<LoginBundleActivity> configureNextActivityClass();
 
     public abstract PairOfStringsModel[] configureNextActivityClassExtras();
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         initializeScreen();
@@ -36,7 +36,7 @@ public abstract class SplashWithAutomatedUpdateActivity extends ActivityWithCont
 
     public void checkThenPerformUpdateIfNeeded() {
 
-        HttpApiSelectTaskWrapper.performSplashScreenThenReturnJsonArray(this, configure_GET_CONFIGURATION_URL(), configure_APPLICATION_NAME(), jsonArray -> CheckAndUpdateTaskWrapper.getCheckAndUpdateWithoutTabIndexTask(configure_APPLICATION_NAME(), (AppCompatActivity) currentActivityContext, configure_GET_CONFIGURATION_URL(), configure_UPDATE_URL(), configureNextActivityClass(), configure_SECURITY_FLAG(), configureNextActivityClassExtras()).execute());
+        HttpApiSelectTaskWrapper.performSplashScreenThenReturnJsonArray(this, configureGetConfigurationUrl(), configureApplicationName(), jsonArray -> CheckAndUpdateTaskWrapper.getCheckAndUpdateWithoutTabIndexTask(configureApplicationName(), (AppCompatActivity) currentActivityContext, configureGetConfigurationUrl(), configureUpdateUrl(), configureNextActivityClass(), configureSecurityFlag(), configureNextActivityClassExtras()).execute());
     }
 
     public void initializeScreen() {
@@ -44,7 +44,7 @@ public abstract class SplashWithAutomatedUpdateActivity extends ActivityWithCont
         setContentView(ndk.utils_android14.R.layout.splash);
     }
 
-    public abstract boolean configure_SECURITY_FLAG();
+    public abstract boolean configureSecurityFlag();
 
-    public abstract String configure_APPLICATION_NAME();
+    public abstract String configureApplicationName();
 }

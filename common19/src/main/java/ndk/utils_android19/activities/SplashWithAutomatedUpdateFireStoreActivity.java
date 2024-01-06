@@ -15,7 +15,7 @@ public abstract class SplashWithAutomatedUpdateFireStoreActivity extends SplashW
 
     public void checkThenPerformUpdateIfNeeded() {
 
-        HttpApiSelectTaskWrapper.performSplashScreenThenReturnJsonArray(this, configure_GET_CONFIGURATION_URL(), configure_APPLICATION_NAME(), jsonArray -> CheckAndUpdateTaskFireStoreWrapper.getCheckAndUpdateWithoutTabIndexTask(configure_APPLICATION_NAME(), (AppCompatActivity) currentActivityContext, configure_GET_CONFIGURATION_URL(), configure_UPDATE_URL(), configureNextActivityClass(), configure_SECURITY_FLAG(), configureNextActivityClassExtras(), configureFireStoreDb(), getApplicationContext()).execute());
+        HttpApiSelectTaskWrapper.performSplashScreenThenReturnJsonArray(this, configureGetConfigurationUrl(), configureApplicationName(), jsonArray -> CheckAndUpdateTaskFireStoreWrapper.getCheckAndUpdateWithoutTabIndexTask(configureApplicationName(), (AppCompatActivity) currentActivityContext, configureGetConfigurationUrl(), configureUpdateUrl(), configureNextActivityClass(), configureSecurityFlag(), configureNextActivityClassExtras(), configureFireStoreDb(), getApplicationContext()).execute());
     }
 
     public abstract FirebaseFirestore configureFireStoreDb();

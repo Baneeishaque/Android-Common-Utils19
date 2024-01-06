@@ -16,13 +16,13 @@ import ndk.utils_android19.models.PairOfStringsModel;
 public class Splash_Version_OK extends SplashWithAutomatedUpdateActivity {
 
     @Override
-    public String configure_GET_CONFIGURATION_URL() {
+    public String configureGetConfigurationUrl() {
 
         return "http://vfmob.com.md-in-64.webhostbox.net/wp-production/account_ledger_server/http_API/select_Configuration.php";
     }
 
     @Override
-    public String configure_UPDATE_URL() {
+    public String configureUpdateUrl() {
 
         return "http://vfmob.com.md-in-64.webhostbox.net/wp-production/account_ledger_server/builds/app-debug.apk";
     }
@@ -33,7 +33,7 @@ public class Splash_Version_OK extends SplashWithAutomatedUpdateActivity {
     }
 
     @Override
-    public String configure_APPLICATION_NAME() {
+    public String configureApplicationName() {
 
         return Application_Specification.APPLICATION_NAME;
     }
@@ -47,7 +47,7 @@ public class Splash_Version_OK extends SplashWithAutomatedUpdateActivity {
     }
 
     @Override
-    public boolean configure_SECURITY_FLAG() {
+    public boolean configureSecurityFlag() {
 
         return DebugUtils.isDebugBuild(getApplicationContext());
     }
