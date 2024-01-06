@@ -39,9 +39,12 @@ public class Splash_Version_OK extends SplashWithAutomatedUpdateActivity {
     @Override
     public PairOfStringsModel[] configureNextActivityClassExtras() {
 
-        return new PairOfStringsModel[]{new PairOfStringsModel(IntentExtendedDataItemNames.INTENT_EXTENDED_DATA_ITEM_NAME_APPLICATION_NAME, Application_Specification.APPLICATION_NAME),
-                new PairOfStringsModel(IntentExtendedDataItemNames.INTENT_EXTENDED_DATA_ITEM_NAME_NEXT_ACTIVITY_CLASS, "Splash_Version_OK"), new PairOfStringsModel(IntentExtendedDataItemNames.INTENT_EXTENDED_DATA_ITEM_NAME_SELECT_USER_URL,
-                "http://vfmob.com.md-in-64.webhostbox.net/wp-production/account_ledger_server/http_API/select_User.php")};
+        return new PairOfStringsModel[]{
+                new PairOfStringsModel(IntentExtendedDataItemNames.INTENT_EXTENDED_DATA_ITEM_NAME_APPLICATION_NAME, Application_Specification.APPLICATION_NAME),
+                new PairOfStringsModel(IntentExtendedDataItemNames.INTENT_EXTENDED_DATA_ITEM_NAME_NEXT_ACTIVITY_CLASS, "Splash_Version_OK"),
+                new PairOfStringsModel(IntentExtendedDataItemNames.INTENT_EXTENDED_DATA_ITEM_NAME_SELECT_USER_URL,
+                        "http://vfmob.com.md-in-64.webhostbox.net/wp-production/account_ledger_server/http_API/select_User.php")
+        };
     }
 
     @Override

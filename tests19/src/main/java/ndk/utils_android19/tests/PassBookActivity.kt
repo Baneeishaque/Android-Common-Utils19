@@ -57,4 +57,9 @@ class PassBookActivity : PassBookActivityBase() {
 
         return writeExternalStoragePermissionRequest
     }
+
+    override fun configureApiMethodParameterNameForUserId(): String {
+
+        return "user_id"
+    }
 }

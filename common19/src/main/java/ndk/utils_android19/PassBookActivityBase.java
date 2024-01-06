@@ -75,11 +75,24 @@ public abstract class PassBookActivityBase extends WriteExternalStoragePermissio
 
             showProgress(true, this, progressBar, passBookTableView);
 
-            loadPassBookTask = new LoadPassBookTask(configurePassBookUrl(), this, progressBar, passBookTableView, configureApplicationName(), passBookTableView, new Pair[]{new Pair<>(IntentExtendedDataItemNames.INTENT_EXTENDED_DATA_ITEM_NAME_SHARED_PREFERENCES_KEY_USER_ID, configureUserId())});
+            loadPassBookTask = new LoadPassBookTask(
+
+                    configurePassBookUrl(),
+                    this,
+                    progressBar,
+                    passBookTableView,
+                    configureApplicationName(),
+                    passBookTableView,
+                    new Pair[]{
+                            new Pair<>(configureApiMethodParameterNameForUserId(), configureUserId())
+                    }
+            );
         }
 
         loadPassBookTask.execute();
     }
+
+    protected abstract String configureApiMethodParameterNameForUserId();
 
     public LoadPassBookTask configureLoadPassBookTask() {
 
