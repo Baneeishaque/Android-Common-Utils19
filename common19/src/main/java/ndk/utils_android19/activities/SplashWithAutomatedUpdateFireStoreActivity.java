@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.firestore.FirebaseFirestore;
 
-import ndk.utils_android16.activities.SplashWithAutomatedUpdateActivity;
 import ndk.utils_android16.network_task.HttpApiSelectTaskWrapper;
 import ndk.utils_android19.network_task.update.CheckAndUpdateTaskFireStoreWrapper;
 
@@ -16,7 +15,7 @@ public abstract class SplashWithAutomatedUpdateFireStoreActivity extends SplashW
 
     public void checkThenPerformUpdateIfNeeded() {
 
-        HttpApiSelectTaskWrapper.performSplashScreenThenReturnJsonArray(this, configure_GET_CONFIGURATION_URL(), configure_APPLICATION_NAME(), jsonArray -> CheckAndUpdateTaskFireStoreWrapper.getCheckAndUpdateWithoutTabIndexTask(configure_APPLICATION_NAME(), (AppCompatActivity) currentActivityContext, configure_GET_CONFIGURATION_URL(), configure_UPDATE_URL(), configure_NEXT_ACTIVITY_CLASS(), configure_SECURITY_FLAG(), configure_NEXT_ACTIVITY_CLASS_EXTRAS(), configureFireStoreDb(), getApplicationContext()).execute());
+        HttpApiSelectTaskWrapper.performSplashScreenThenReturnJsonArray(this, configure_GET_CONFIGURATION_URL(), configure_APPLICATION_NAME(), jsonArray -> CheckAndUpdateTaskFireStoreWrapper.getCheckAndUpdateWithoutTabIndexTask(configure_APPLICATION_NAME(), (AppCompatActivity) currentActivityContext, configure_GET_CONFIGURATION_URL(), configure_UPDATE_URL(), configureNextActivityClass(), configure_SECURITY_FLAG(), configureNextActivityClassExtras(), configureFireStoreDb(), getApplicationContext()).execute());
     }
 
     public abstract FirebaseFirestore configureFireStoreDb();
