@@ -1,9 +1,7 @@
 package ndk.utils_android19.tests;
 
-import androidx.core.util.Pair;
-
 import ndk.utils_android1.DebugUtils;
-import ndk.utils_android16.activities.LoginBundleActivity;
+import ndk.utils_android19.activities.LoginBundleActivity;
 import ndk.utils_android16.constants.IntentExtraFields;
 import ndk.utils_android19.activities.SplashWithAutomatedUpdateActivity;
 import ndk.utils_android19.models.PairOfStringsModel;
