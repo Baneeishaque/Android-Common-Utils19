@@ -20,6 +20,7 @@ import ndk.utils_android1.UpdateUtils;
 import ndk.utils_android14.ActivityUtils14;
 import ndk.utils_android16.ServerUtils;
 import ndk.utils_android19.ActivityUtils19;
+import ndk.utils_android19.models.PairOfStringsModel;
 
 import static ndk.utils_android1.NetworkUtils1.displayFriendlyExceptionMessage;
 import static ndk.utils_android16.update.UpdateApplication.updateApplication;
@@ -34,11 +35,11 @@ public class CheckAndUpdateTaskFireStore extends AsyncTask<Void, Void, String[]>
     private String URL, applicationName, updateUrl;
     private boolean securityFlag, tabIndexFlag;
     private int tabIndex;
-    private Pair[] nextActivityExtras;
+    private PairOfStringsModel[] nextActivityExtras;
     private FirebaseFirestore firebaseFirestoreDb;
     private Context applicationContext;
 
-    public CheckAndUpdateTaskFireStore(String applicationName, AppCompatActivity currentActivity, String URL, String updateUrl, Class nextActivity, boolean securityFlag, boolean tabIndexFlag, int tabIndex, Pair[] nextActivityExtras, FirebaseFirestore firebaseFirestoreDb, Context applicationContext) {
+    public CheckAndUpdateTaskFireStore(String applicationName, AppCompatActivity currentActivity, String URL, String updateUrl, Class nextActivity, boolean securityFlag, boolean tabIndexFlag, int tabIndex, PairOfStringsModel[] nextActivityExtras, FirebaseFirestore firebaseFirestoreDb, Context applicationContext) {
 
         this.currentActivity = currentActivity;
         this.URL = URL;

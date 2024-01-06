@@ -12,6 +12,7 @@ import androidx.core.util.Pair;
 
 import ndk.utils_android14.NetworkUtils14.FurtherActions;
 import ndk.utils_android19.NetworkUtils19;
+import ndk.utils_android19.models.PairOfStringsModel;
 
 public class RestInsertTask extends AsyncTask<Void, Void, String[]> {
 
@@ -27,7 +28,7 @@ public class RestInsertTask extends AsyncTask<Void, Void, String[]> {
     private EditText[] editTextsToClear;
     private boolean clearFieldsFlag = true;
     private FurtherActions furtherActions;
-    private Pair[] nextClassExtras;
+    private PairOfStringsModel[] nextClassExtras;
 
     //finish with next activity
     public RestInsertTask(String url, AppCompatActivity currentActivity, View progressBarView, View formView, String tag, Pair[] nameValuePairs, View focusOnError, Class nextActivity) {
@@ -42,7 +43,7 @@ public class RestInsertTask extends AsyncTask<Void, Void, String[]> {
     }
 
     //finish with next activity and extras
-    public RestInsertTask(String url, AppCompatActivity currentActivity, View progressBarView, View formView, String tag, Pair[] nameValuePairs, View focusOnError, Class nextActivity, Pair[] nextClassExtras) {
+    public RestInsertTask(String url, AppCompatActivity currentActivity, View progressBarView, View formView, String tag, Pair[] nameValuePairs, View focusOnError, Class nextActivity, PairOfStringsModel[] nextClassExtras) {
         this.url = url;
         this.currentActivity = currentActivity;
         this.progressBarView = progressBarView;
@@ -133,15 +134,15 @@ public class RestInsertTask extends AsyncTask<Void, Void, String[]> {
     protected void onPostExecute(final String[] networkActionResponseArray) {
         showProgress(false, currentActivity, progressBarView, formView);
         if (finishFlag) {
-            NetworkUtils19.handleJsonInsertionResponseAndSwitchWithFinishOrClearFields(networkActionResponseArray, currentActivity, nextActivity, new EditText[]{}, focusOnError, tag, 1, new Pair[]{}, furtherActions);
+            NetworkUtils19.handleJsonInsertionResponseAndSwitchWithFinishOrClearFields(networkActionResponseArray, currentActivity, nextActivity, new EditText[]{}, focusOnError, tag, 1, new PairOfStringsModel[]{}, furtherActions);
         } else if (selfFinishFlag) {
-            NetworkUtils19.handleJsonInsertionResponseAndSwitchWithFinishOrClearFields(networkActionResponseArray, currentActivity, nextActivity, new EditText[]{}, focusOnError, tag, 3, new Pair[]{}, furtherActions);
+            NetworkUtils19.handleJsonInsertionResponseAndSwitchWithFinishOrClearFields(networkActionResponseArray, currentActivity, nextActivity, new EditText[]{}, focusOnError, tag, 3, new PairOfStringsModel[]{}, furtherActions);
         } else if (clearFieldsFlag) {
-            NetworkUtils19.handleJsonInsertionResponseAndSwitchWithFinishOrClearFields(networkActionResponseArray, currentActivity, nextActivity, editTextsToClear, focusOnError, tag, 2, new Pair[]{}, furtherActions);
+            NetworkUtils19.handleJsonInsertionResponseAndSwitchWithFinishOrClearFields(networkActionResponseArray, currentActivity, nextActivity, editTextsToClear, focusOnError, tag, 2, new PairOfStringsModel[]{}, furtherActions);
         } else if (furtherActionsFlag) {
-            NetworkUtils19.handleJsonInsertionResponseAndSwitchWithFinishOrClearFields(networkActionResponseArray, currentActivity, nextActivity, new EditText[]{}, focusOnError, tag, 5, new Pair[]{}, furtherActions);
+            NetworkUtils19.handleJsonInsertionResponseAndSwitchWithFinishOrClearFields(networkActionResponseArray, currentActivity, nextActivity, new EditText[]{}, focusOnError, tag, 5, new PairOfStringsModel[]{}, furtherActions);
         } else if (clearAndFurtherActionsFlag) {
-            NetworkUtils19.handleJsonInsertionResponseAndSwitchWithFinishOrClearFields(networkActionResponseArray, currentActivity, nextActivity, editTextsToClear, focusOnError, tag, 6, new Pair[]{}, furtherActions);
+            NetworkUtils19.handleJsonInsertionResponseAndSwitchWithFinishOrClearFields(networkActionResponseArray, currentActivity, nextActivity, editTextsToClear, focusOnError, tag, 6, new PairOfStringsModel[]{}, furtherActions);
         } else {
             NetworkUtils19.handleJsonInsertionResponseAndSwitchWithFinishOrClearFields(networkActionResponseArray, currentActivity, nextActivity, new EditText[]{}, focusOnError, tag, 4, nextClassExtras, furtherActions);
         }

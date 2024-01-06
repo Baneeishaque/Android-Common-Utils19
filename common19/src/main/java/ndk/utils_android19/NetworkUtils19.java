@@ -17,9 +17,10 @@ import ndk.utils_android1.TextClearUtils;
 import ndk.utils_android1.ToastUtils1;
 import ndk.utils_android14.ActivityUtils14;
 import ndk.utils_android14.NetworkUtils14;
+import ndk.utils_android19.models.PairOfStringsModel;
 
 public class NetworkUtils19 extends NetworkUtils14 {
-    public static void handleJsonInsertionResponseAndSwitchWithFinishOrClearFields(String[] networkActionResponseArray, AppCompatActivity currentActivity, Class toSwitchActivity, EditText[] editTextsToClear, View viewToFocusOnError, String tag, int actionFlag, Pair[] nextClassExtras, FurtherActions furtherActions) {
+    public static void handleJsonInsertionResponseAndSwitchWithFinishOrClearFields(String[] networkActionResponseArray, AppCompatActivity currentActivity, Class toSwitchActivity, EditText[] editTextsToClear, View viewToFocusOnError, String tag, int actionFlag, PairOfStringsModel[] nextClassExtras, FurtherActions furtherActions) {
 
         NetworkUtils14.furtherActions = furtherActions;
 
@@ -121,7 +122,7 @@ public class NetworkUtils19 extends NetworkUtils14 {
 
     public static void handleJsonInsertionResponseAndSwitchWithFinishAndToggleView(String[] networkActionResponseArray, Class toSwitchActivity, View viewToFocusOnError, View viewToToggle, String tag, AppCompatActivity currentActivity) {
 
-        handleJsonInsertionResponseAndSwitchWithFinishOrClearFields(networkActionResponseArray, currentActivity, toSwitchActivity, new EditText[]{}, viewToFocusOnError, tag, 1, new Pair[]{}, furtherActions);
+        handleJsonInsertionResponseAndSwitchWithFinishOrClearFields(networkActionResponseArray, currentActivity, toSwitchActivity, new EditText[]{}, viewToFocusOnError, tag, 1, new PairOfStringsModel[]{}, furtherActions);
         viewToToggle.setEnabled(true);
     }
 }

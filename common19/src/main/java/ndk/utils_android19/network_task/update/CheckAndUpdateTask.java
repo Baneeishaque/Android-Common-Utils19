@@ -20,6 +20,7 @@ import ndk.utils_android1.UpdateUtils;
 import ndk.utils_android16.ServerUtils;
 import ndk.utils_android14.ActivityUtils14;
 import ndk.utils_android19.ActivityUtils19;
+import ndk.utils_android19.models.PairOfStringsModel;
 
 public class CheckAndUpdateTask extends AsyncTask<Void, Void, String[]> {
 
@@ -28,9 +29,9 @@ public class CheckAndUpdateTask extends AsyncTask<Void, Void, String[]> {
     private String URL, applicationName, updateUrl;
     private boolean securityFlag, tabIndexFlag;
     private int tabIndex;
-    private Pair[] nextActivityExtras;
+    private PairOfStringsModel[] nextActivityExtras;
 
-    public CheckAndUpdateTask(String applicationName, AppCompatActivity currentActivity, String URL, String updateUrl, Class nextActivity, boolean securityFlag, boolean tabIndexFlag, int tabIndex, Pair[] nextActivityExtras) {
+    public CheckAndUpdateTask(String applicationName, AppCompatActivity currentActivity, String URL, String updateUrl, Class nextActivity, boolean securityFlag, boolean tabIndexFlag, int tabIndex, PairOfStringsModel[] nextActivityExtras) {
 
         this.currentActivity = currentActivity;
         this.URL = URL;

@@ -13,6 +13,7 @@ import java.util.Objects;
 import ndk.utils_android1.ActivityUtils1;
 import ndk.utils_android14.ActivityUtils14;
 import ndk.utils_android16.Alert_Dialog_Utils;
+import ndk.utils_android19.models.PairOfStringsModel;
 
 public class ActivityUtils19 extends ActivityUtils14 {
 
@@ -111,7 +112,7 @@ public class ActivityUtils19 extends ActivityUtils14 {
         ActivityUtils1.startActivityForIntent(activityContext, constructIntentWithStringExtras(activityContext, activity, new Pair[]{new Pair<>("origin", origin)}));
     }
 
-    public static void startActivityWithStringExtrasAndFinish(Context currentActivityContext, Class nextActivity, Pair[] nextActivityExtras) {
+    public static void startActivityWithStringExtrasAndFinish(Context currentActivityContext, Class nextActivity, PairOfStringsModel[] nextActivityExtras) {
 
         startActivityForIntentWithFinish(currentActivityContext, constructIntentWithStringExtras(currentActivityContext, nextActivity, nextActivityExtras));
     }

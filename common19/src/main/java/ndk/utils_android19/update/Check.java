@@ -7,6 +7,7 @@ import androidx.core.util.Pair;
 
 import ndk.utils_android1.DebugUtils;
 import ndk.utils_android1.NetworkUtils1;
+import ndk.utils_android19.models.PairOfStringsModel;
 import ndk.utils_android19.network_task.update.CheckAndUpdateTask;
 
 import static ndk.utils_android14.NetworkUtils14.displayOfflineLongNoFabBottomSnackBar;
@@ -21,7 +22,7 @@ public class Check {
 
         if (NetworkUtils1.isOnline(current_activity)) {
 
-            Update_Task = new CheckAndUpdateTask(application_name, current_activity, URL, update_URL, next_activity, DebugUtils.isDebugBuild(current_activity), false, 0, new Pair[]{});
+            Update_Task = new CheckAndUpdateTask(application_name, current_activity, URL, update_URL, next_activity, DebugUtils.isDebugBuild(current_activity), false, 0, new PairOfStringsModel[]{});
             Update_Task.execute();
 
         } else {
