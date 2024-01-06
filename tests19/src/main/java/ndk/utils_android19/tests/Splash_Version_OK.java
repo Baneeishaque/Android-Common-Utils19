@@ -2,7 +2,7 @@ package ndk.utils_android19.tests;
 
 import ndk.utils_android1.DebugUtils;
 import ndk.utils_android19.activities.LoginBundleActivity;
-import ndk.utils_android16.constants.IntentExtraFields;
+import ndk.utils_android16.constants.IntentExtendedDataItemNames;
 import ndk.utils_android19.activities.SplashWithAutomatedUpdateActivity;
 import ndk.utils_android19.models.PairOfStringsModel;
 
@@ -39,8 +39,8 @@ public class Splash_Version_OK extends SplashWithAutomatedUpdateActivity {
     @Override
     public PairOfStringsModel[] configureNextActivityClassExtras() {
 
-        return new PairOfStringsModel[]{new PairOfStringsModel(IntentExtraFields.APPLICATION_NAME, Application_Specification.APPLICATION_NAME),
-                new PairOfStringsModel(IntentExtraFields.NEXT_ACTIVITY_CLASS, "Splash_Version_OK"), new PairOfStringsModel(IntentExtraFields.SELECT_USER_URL,
+        return new PairOfStringsModel[]{new PairOfStringsModel(IntentExtendedDataItemNames.INTENT_EXTENDED_DATA_ITEM_NAME_APPLICATION_NAME, Application_Specification.APPLICATION_NAME),
+                new PairOfStringsModel(IntentExtendedDataItemNames.INTENT_EXTENDED_DATA_ITEM_NAME_NEXT_ACTIVITY_CLASS, "Splash_Version_OK"), new PairOfStringsModel(IntentExtendedDataItemNames.INTENT_EXTENDED_DATA_ITEM_NAME_SELECT_USER_URL,
                 "http://vfmob.com.md-in-64.webhostbox.net/wp-production/account_ledger_server/http_API/select_User.php")};
     }
 

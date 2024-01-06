@@ -1,20 +1,20 @@
 package ndk.utils_android19.activities;
 
 import ndk.utils_android1.ErrorUtils;
-import ndk.utils_android16.constants.IntentExtraFields;
+import ndk.utils_android16.constants.IntentExtendedDataItemNames;
 
 public class LoginBundleActivity extends LoginBaseActivity {
 
     @Override
     public String configure_SELECT_USER_URL() {
 
-        return getIntent().getStringExtra(IntentExtraFields.SELECT_USER_URL);
+        return getIntent().getStringExtra(IntentExtendedDataItemNames.INTENT_EXTENDED_DATA_ITEM_NAME_SELECT_USER_URL);
     }
 
     @Override
     public String configureApplicationName() {
 
-        return getIntent().getStringExtra(IntentExtraFields.APPLICATION_NAME);
+        return getIntent().getStringExtra(IntentExtendedDataItemNames.INTENT_EXTENDED_DATA_ITEM_NAME_APPLICATION_NAME);
     }
 
     @Override
@@ -22,7 +22,7 @@ public class LoginBundleActivity extends LoginBaseActivity {
 
         try {
 
-            return Class.forName(getIntent().getStringExtra(IntentExtraFields.NEXT_ACTIVITY_CLASS));
+            return Class.forName(getIntent().getStringExtra(IntentExtendedDataItemNames.INTENT_EXTENDED_DATA_ITEM_NAME_NEXT_ACTIVITY_CLASS));
 
         } catch (ClassNotFoundException e) {
 
@@ -34,17 +34,17 @@ public class LoginBundleActivity extends LoginBaseActivity {
     @Override
     public String configureTestUsername() {
 
-        return getIntent().getStringExtra(IntentExtraFields.TEST_USERNAME);
+        return getIntent().getStringExtra(IntentExtendedDataItemNames.INTENT_EXTENDED_DATA_ITEM_NAME_TEST_USERNAME);
     }
 
     @Override
     public String configureSharedPreferenceKeyForUserId() {
-        return getIntent().getStringExtra(IntentExtraFields.SHARED_PREFERENCES_KEY_USER_ID);
+        return getIntent().getStringExtra(IntentExtendedDataItemNames.INTENT_EXTENDED_DATA_ITEM_NAME_SHARED_PREFERENCES_KEY_USER_ID);
     }
 
     @Override
     public String configureTestPassword() {
 
-        return getIntent().getStringExtra(IntentExtraFields.TEST_PASSWORD);
+        return getIntent().getStringExtra(IntentExtendedDataItemNames.INTENT_EXTENDED_DATA_ITEM_NAME_TEST_PASSWORD);
     }
 }

@@ -16,6 +16,7 @@ import java.util.Date;
 import java.util.Locale;
 
 import ndk.utils_android16.SnackbarUtils16;
+import ndk.utils_android16.constants.IntentExtendedDataItemNames;
 import ndk.utils_android16.models.sortable_tableView.pass_book.PassBookEntryV2;
 import ndk.utils_android16.network_task.LoadPassBookTask;
 import ndk.utils_android16.widgets.pass_book.PassBookTableView;
@@ -74,7 +75,7 @@ public abstract class PassBookActivityBase extends WriteExternalStoragePermissio
 
             showProgress(true, this, progressBar, passBookTableView);
 
-            loadPassBookTask = new LoadPassBookTask(configurePassBookUrl(), this, progressBar, passBookTableView, configureApplicationName(), passBookTableView, new Pair[]{new Pair<>("user_id", configureUserId())});
+            loadPassBookTask = new LoadPassBookTask(configurePassBookUrl(), this, progressBar, passBookTableView, configureApplicationName(), passBookTableView, new Pair[]{new Pair<>(IntentExtendedDataItemNames.INTENT_EXTENDED_DATA_ITEM_NAME_SHARED_PREFERENCES_KEY_USER_ID, configureUserId())});
         }
 
         loadPassBookTask.execute();
