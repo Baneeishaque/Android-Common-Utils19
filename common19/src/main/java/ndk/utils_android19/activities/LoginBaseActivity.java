@@ -18,8 +18,8 @@ import java.util.ArrayList;
 
 import ndk.utils_android1.DebugUtils;
 import ndk.utils_android1.ErrorUtils;
+import ndk.utils_android1.LogUtils1;
 import ndk.utils_android1.ToastUtils1;
-import ndk.utils_android14.ActivityUtils14;
 import ndk.utils_android14.RestGetTask;
 import ndk.utils_android14.SharedPreferencesActivityWithContexts;
 import ndk.utils_android16.R;
@@ -27,6 +27,8 @@ import ndk.utils_android16.SharedPreferenceUtils16;
 import ndk.utils_android16.ValidationUtils16;
 import ndk.utils_android16.network_task.HttpApiSelectTask;
 import ndk.utils_android16.network_task.HttpApiSelectTaskWrapper;
+import ndk.utils_android19.ActivityUtils19;
+import ndk.utils_android19.SharedPreferenceUtils19Kt;
 
 //TODO : Create Layout initialization
 
@@ -40,12 +42,35 @@ public abstract class LoginBaseActivity extends SharedPreferencesActivityWithCon
 
     public abstract String configure_SELECT_USER_URL();
 
-    public abstract Class configure_NEXT_ACTIVITY_CLASS();
+    public abstract Class configureNextActivityClass();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
+
+        if (configureSharedPreferenceKeyForUserId() != null) {
+
+            //TODO : Check value of abstract methods
+            kotlin.Pair<Boolean, String> checkSharedPreferencesResult = SharedPreferenceUtils19Kt.checkIntOnSharedPreferences(getSharedPreferences(), configureSharedPreferenceKeyForUserId());
+
+            if (checkSharedPreferencesResult.getFirst()) {
+
+                ActivityUtils19.startActivityForClassWithFinish(currentActivityContext, configureNextActivityClass());
+
+            } else {
+
+                LogUtils1.debug(configureApplicationName(), "SharedPreferences Key Error: " + checkSharedPreferencesResult.getSecond(), currentApplicationContext);
+
+                onCreateActions();
+            }
+        } else {
+
+            onCreateActions();
+        }
+    }
+
+    private void onCreateActions() {
 
         setContentView(R.layout.activity_login);
 
@@ -55,7 +80,7 @@ public abstract class LoginBaseActivity extends SharedPreferencesActivityWithCon
         editTextUsername = findViewById(R.id.editTextUsername);
         editTextPassword = findViewById(R.id.editTextPassword);
 
-        if (DebugUtils.isDebugBuild(getApplicationContext())) {
+        if (DebugUtils.isDebugBuild(currentApplicationContext)) {
 
             editTextUsername.setText(configureTestUsername());
             editTextPassword.setText(configureTestPassword());
@@ -124,8 +149,8 @@ public abstract class LoginBaseActivity extends SharedPreferencesActivityWithCon
                 switch (userCount) {
 
                     case "1":
-                        SharedPreferenceUtils16.commitSharedPreferences(getApplicationContext(), configureApplicationName(), new Pair[]{new Pair<>("user_id", jsonObject.getString("id"))});
-                        ActivityUtils14.startActivityForClassWithFinish(currentActivityContext, configure_NEXT_ACTIVITY_CLASS());
+                        SharedPreferenceUtils16.commitSharedPreferences(getApplicationContext(), configureApplicationName(), new Pair[]{new Pair<>(configureSharedPreferenceKeyForUserId(), jsonObject.getString("id"))});
+                        ActivityUtils19.startActivityForClassWithFinish(currentActivityContext, configureNextActivityClass());
                         break;
 
                     case "0":
@@ -143,6 +168,8 @@ public abstract class LoginBaseActivity extends SharedPreferencesActivityWithCon
             }
         };
     }
+
+    public abstract String configureSharedPreferenceKeyForUserId();
 
     public Pair[] configureHttpApiCallParameters() {
 

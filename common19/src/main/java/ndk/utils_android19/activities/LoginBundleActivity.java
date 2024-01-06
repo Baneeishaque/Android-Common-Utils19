@@ -18,7 +18,7 @@ public class LoginBundleActivity extends LoginBaseActivity {
     }
 
     @Override
-    public Class configure_NEXT_ACTIVITY_CLASS() {
+    public Class configureNextActivityClass() {
 
         try {
 
@@ -35,6 +35,11 @@ public class LoginBundleActivity extends LoginBaseActivity {
     public String configureTestUsername() {
 
         return getIntent().getStringExtra(IntentExtraFields.TEST_USERNAME);
+    }
+
+    @Override
+    public String configureSharedPreferenceKeyForUserId() {
+        return getIntent().getStringExtra(IntentExtraFields.SHARED_PREFERENCES_KEY_USER_ID);
     }
 
     @Override
