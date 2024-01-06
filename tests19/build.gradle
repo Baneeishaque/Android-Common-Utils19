@@ -81,7 +81,7 @@ android {
 
     kotlinOptions {
 
-        jvmTarget = "1.8"
+        jvmTarget = '17'
     }
 
 //    dataBinding {
@@ -111,4 +111,8 @@ dependencies {
 
     implementation project(path: ':Utils16:common16')
     implementation project(path: ':Utils14:common14')
+}
+
+kotlin {
+    jvmToolchain(17)
 }

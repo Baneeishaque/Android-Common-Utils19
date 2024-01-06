@@ -1,4 +1,5 @@
 apply plugin: 'com.android.library'
+apply plugin: 'org.jetbrains.kotlin.android'
 
 android {
 
@@ -81,6 +82,9 @@ android {
         checkReleaseBuilds false
         abortOnError false
     }
+    kotlinOptions {
+        jvmTarget = '17'
+    }
     namespace 'ndk.utils_android19'
 }
 
@@ -92,6 +96,7 @@ dependencies {
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
     implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0'
     implementation "androidx.core:core:1.13.0-alpha02"
+    implementation 'androidx.core:core-ktx:1.13.0-alpha02'
 
     implementation platform('com.google.firebase:firebase-bom:32.7.0')
     implementation 'com.google.firebase:firebase-messaging'
@@ -104,4 +109,8 @@ dependencies {
 
     implementation project(path: ':Utils16:common16')
     implementation project(path: ':Utils14:common14')
+}
+
+kotlin {
+    jvmToolchain(17)
 }
