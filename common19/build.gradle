@@ -102,6 +102,8 @@ dependencies {
     implementation 'com.google.firebase:firebase-messaging'
     implementation 'com.google.firebase:firebase-firestore'
 
+    implementation 'com.github.kimkevin:cachepot:1.2.0'
+    implementation 'org.javatuples:javatuples:1.2'
     implementation 'com.itextpdf:itextpdf:5.5.13.3'
     implementation 'de.codecrafters.tableview:tableview:2.8.1'
 

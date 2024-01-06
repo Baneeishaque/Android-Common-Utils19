@@ -7,8 +7,6 @@ import androidx.core.util.Pair;
 
 import com.google.firebase.firestore.FirebaseFirestore;
 
-import ndk.utils_android16.network_task.update.CheckAndUpdateTask;
-
 public class CheckAndUpdateTaskFireStoreWrapper {
 
     //TODO : Get Task Objects

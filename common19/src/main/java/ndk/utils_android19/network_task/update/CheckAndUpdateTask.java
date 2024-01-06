@@ -1,12 +1,12 @@
 package ndk.utils_android19.network_task.update;
 
-import android.content.Context;
+import static ndk.utils_android1.NetworkUtils1.displayFriendlyExceptionMessage;
+import static ndk.utils_android16.update.UpdateApplication.updateApplication;
+
 import android.os.AsyncTask;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.util.Pair;
-
-import com.google.firebase.firestore.FirebaseFirestore;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -17,17 +17,11 @@ import ndk.utils_android1.LogUtils1;
 import ndk.utils_android1.NetworkUtils1;
 import ndk.utils_android1.ToastUtils1;
 import ndk.utils_android1.UpdateUtils;
-import ndk.utils_android14.ActivityUtils14;
 import ndk.utils_android16.ServerUtils;
+import ndk.utils_android14.ActivityUtils14;
 import ndk.utils_android19.ActivityUtils19;
 
-import static ndk.utils_android1.NetworkUtils1.displayFriendlyExceptionMessage;
-import static ndk.utils_android16.update.UpdateApplication.updateApplication;
-
-//TODO : Not compatiable with SDK 14
-// import static ndk.utils_android14.UpdateUtils14.getServerVersionFireStore;
-
-public class CheckAndUpdateTaskFireStore extends AsyncTask<Void, Void, String[]> {
+public class CheckAndUpdateTask extends AsyncTask<Void, Void, String[]> {
 
     private AppCompatActivity currentActivity;
     private Class nextActivity;
@@ -35,10 +29,8 @@ public class CheckAndUpdateTaskFireStore extends AsyncTask<Void, Void, String[]>
     private boolean securityFlag, tabIndexFlag;
     private int tabIndex;
     private Pair[] nextActivityExtras;
-    private FirebaseFirestore firebaseFirestoreDb;
-    private Context applicationContext;
 
-    public CheckAndUpdateTaskFireStore(String applicationName, AppCompatActivity currentActivity, String URL, String updateUrl, Class nextActivity, boolean securityFlag, boolean tabIndexFlag, int tabIndex, Pair[] nextActivityExtras, FirebaseFirestore firebaseFirestoreDb, Context applicationContext) {
+    public CheckAndUpdateTask(String applicationName, AppCompatActivity currentActivity, String URL, String updateUrl, Class nextActivity, boolean securityFlag, boolean tabIndexFlag, int tabIndex, Pair[] nextActivityExtras) {
 
         this.currentActivity = currentActivity;
         this.URL = URL;
@@ -49,35 +41,12 @@ public class CheckAndUpdateTaskFireStore extends AsyncTask<Void, Void, String[]>
         this.tabIndexFlag = tabIndexFlag;
         this.tabIndex = tabIndex;
         this.nextActivityExtras = nextActivityExtras;
-        this.firebaseFirestoreDb = firebaseFirestoreDb;
-        this.applicationContext = applicationContext;
     }
 
     @Override
     protected String[] doInBackground(Void... params) {
 
-        //TODO : Not compatiable with SDK 14
-        // FireStoreRequestResponse fireStoreRequestResponse = getServerVersionFireStore(firebaseFirestoreDb, applicationName, applicationContext);
-        // switch (fireStoreRequestResponse.getStatus()) {
-
-        //     case 2:
-        //         return new String[]{"1", "Action not performed yet..."};
-
-        //     case -1:
-        //         return new String[]{"1", "Exception : " + fireStoreRequestResponse.getException().getLocalizedMessage()};
-
-        //     case 1:
-        //         return new String[]{"1", "No document..."};
-
-        //     case 0:
-        //         JSONArray jsonArray = new JSONArray();
-        //         jsonArray.put(new JSONObject(fireStoreRequestResponse.getData()));
-        //         return new String[]{"0", String.valueOf(jsonArray)};
-
-        //     default:
-        //         return new String[]{"1", "Unknown error..."};
-        // }
-        return new String[]{"1", "Unknown error..."};
+        return UpdateUtils.getServerVersion(URL, applicationName, currentActivity);
     }
 
     @Override
@@ -117,7 +86,7 @@ public class CheckAndUpdateTaskFireStore extends AsyncTask<Void, Void, String[]>
 
                 } else {
 
-                    LogUtils1.debug(applicationName, "Latest Version...", applicationContext);
+                    LogUtils1.debug(applicationName, "Latest Version...", currentActivity);
 
                     if (!securityFlag) {
 
