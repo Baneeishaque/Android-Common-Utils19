@@ -3,25 +3,35 @@ package ndk.utils_android19;
 import android.content.Context;
 import android.content.SharedPreferences;
 
-import ndk.utils_android16.SharedPreferenceUtils16;
-import ndk.utils_android19.models.PairOfStringsModel;
+import java.util.Map;
 
-class SharedPreferenceUtils19 extends SharedPreferenceUtils16 {
+import ndk.utils_android9.SharedPreferencesUtils9;
 
-    public static boolean isFirstRun(SharedPreferences sharedPreferences, FirstRunActions firstRunActions) {
+public class SharedPreferenceUtils19 extends SharedPreferencesUtils9 {
 
-        String isFirstRunKey = "isFirstRun";
+    public static boolean isFirstRun(String applicationName, Context currentApplicationContext, SharedPreferences sharedPreferences, FirstRunActions firstRunActions) {
+
+        final String isFirstRunKey = "isFirstRun";
         if (sharedPreferences.getString(isFirstRunKey, String.valueOf(true)).equals(String.valueOf(true))) {
 
             firstRunActions.onFirstRun();
 
-            commitSharedPreferences(sharedPreferences, new PairOfStringsModel[]{new PairOfStringsModel(isFirstRunKey, String.valueOf(false))});
+            if (!(SharedPreferenceUtils19Kt.commitSharedPreferences(sharedPreferences, Map.of(isFirstRunKey, String.valueOf(false))))) {
+
+                SharedPreferenceUtils19Kt.debugCommitSharedPreferencesErrorWithIndicatorMessageOnGui(applicationName, null, null, currentApplicationContext);
+            }
+
             return true;
         }
         return false;
     }
 
-    public static boolean isFirstRun(Context context, String applicationName, FirstRunActions firstRunActions) {
-        return isFirstRun(context.getSharedPreferences(applicationName, Context.MODE_PRIVATE), firstRunActions);
+    public static boolean isFirstRun(String applicationName, Context currentApplicationContext, FirstRunActions firstRunActions) {
+        return isFirstRun(applicationName, currentApplicationContext, currentApplicationContext.getSharedPreferences(applicationName, Context.MODE_PRIVATE), firstRunActions);
+    }
+
+    public interface FirstRunActions {
+
+        void onFirstRun();
     }
 }

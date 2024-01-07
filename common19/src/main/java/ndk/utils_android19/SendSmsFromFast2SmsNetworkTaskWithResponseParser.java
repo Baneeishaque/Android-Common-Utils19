@@ -60,7 +60,7 @@ public abstract class SendSmsFromFast2SmsNetworkTaskWithResponseParser {
 
             } catch (JSONException jsonException) {
 
-                ExceptionUtils19.handleExceptionOnGui(currentActivityContext, applicationName, jsonException);
+                ExceptionUtils19.handleExceptionOnGui19(currentActivityContext, applicationName, jsonException);
             }
         }).execute();
     }

@@ -2,15 +2,18 @@ package ndk.utils_android19;
 
 import android.content.Context;
 
+import androidx.annotation.NonNull;
+
 import java.util.Arrays;
 
 import ndk.utils_android1.ExceptionUtils1;
 
 //TODO : Change API
 
-public class ExceptionUtils19 {
+public class ExceptionUtils19 extends ExceptionUtils1 {
 
-    public static String getExceptionDetails(Exception e) {
+    @NonNull
+    public static String getExceptionDetails19(@NonNull Exception e) {
 
         return "Exception Message : " + e.getLocalizedMessage()
                 + "\n" + "Exception Code : " + e.hashCode()
@@ -21,23 +24,13 @@ public class ExceptionUtils19 {
                 + "\n" + "Exception : " + e;
     }
 
-    public static void handleException(boolean isGuiPresent, Context applicationContext, final String tag, Exception exception) {
+    public static void handleException19(boolean isGuiPresent, Context applicationContext, final String tag, Exception exception) {
 
-        ExceptionUtils1.handleException(isGuiPresent, applicationContext, tag, getExceptionDetails(exception));
+        handleException(isGuiPresent, applicationContext, tag, getExceptionDetails19(exception));
     }
 
-    public static void handleExceptionOnGui(Context applicationContext, final String tag, Exception exception) {
+    public static void handleExceptionOnGui19(Context applicationContext, final String tag, Exception exception) {
 
-        handleException(true, applicationContext, tag, exception);
-    }
-
-    public static void handleException(boolean isGuiPresent, Context applicationContext, final String tag, String exception) {
-
-        ExceptionUtils1.handleException(isGuiPresent, applicationContext, tag, exception);
-    }
-
-    public static void handleExceptionOnGui(Context applicationContext, final String tag, String exception) {
-
-        handleException(true, applicationContext, tag, exception);
+        handleException19(true, applicationContext, tag, exception);
     }
 }

@@ -15,6 +15,7 @@ import androidx.core.util.Pair;
 import org.json.JSONException;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 import ndk.utils_android1.DebugUtils;
 import ndk.utils_android1.ErrorUtils;
@@ -23,7 +24,6 @@ import ndk.utils_android1.ToastUtils1;
 import ndk.utils_android14.RestGetTask;
 import ndk.utils_android14.SharedPreferencesActivityWithContexts;
 import ndk.utils_android16.R;
-import ndk.utils_android16.SharedPreferenceUtils16;
 import ndk.utils_android16.ValidationUtils16;
 import ndk.utils_android16.network_task.HttpApiSelectTask;
 import ndk.utils_android16.network_task.HttpApiSelectTaskWrapper;
@@ -52,7 +52,7 @@ public abstract class LoginBaseActivity extends SharedPreferencesActivityWithCon
         if (configureSharedPreferenceKeyForUserId() != null) {
 
             //TODO : Check value of abstract methods
-            kotlin.Pair<Boolean, String> checkSharedPreferencesResult = SharedPreferenceUtils19Kt.checkIntOnSharedPreferences(getSharedPreferences(), configureSharedPreferenceKeyForUserId());
+            kotlin.Pair<Boolean, String> checkSharedPreferencesResult = SharedPreferenceUtils19Kt.checkUnsignedIntValueIncludingAsTextOnSharedPreferences(getSharedPreferences(), configureSharedPreferenceKeyForUserId());
 
             if (checkSharedPreferencesResult.getFirst()) {
 
@@ -149,8 +149,15 @@ public abstract class LoginBaseActivity extends SharedPreferencesActivityWithCon
                 switch (userCount) {
 
                     case "1":
-                        SharedPreferenceUtils16.commitSharedPreferences(getApplicationContext(), configureApplicationName(), new Pair[]{new Pair<>(configureSharedPreferenceKeyForUserId(), jsonObject.getString("id"))});
-                        ActivityUtils19.startActivityForClassWithFinish(currentActivityContext, configureNextActivityClass());
+
+                        if (SharedPreferenceUtils19Kt.commitSharedPreferences(currentApplicationContext, configureApplicationName(), Map.of(configureSharedPreferenceKeyForUserId(), jsonObject.getString("id")))) {
+
+                            ActivityUtils19.startActivityForClassWithFinish(currentActivityContext, configureNextActivityClass());
+
+                        } else {
+
+                            SharedPreferenceUtils19Kt.debugCommitSharedPreferencesErrorWithIndicatorMessageOnGui(configureApplicationName(), null, null, currentApplicationContext);
+                        }
                         break;
 
                     case "0":

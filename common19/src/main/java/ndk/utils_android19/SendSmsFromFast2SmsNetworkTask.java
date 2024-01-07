@@ -110,7 +110,7 @@ public abstract class SendSmsFromFast2SmsNetworkTask extends AsyncTask<Void, Voi
 
             } catch (JSONException jsonException) {
 
-                ExceptionUtils19.handleExceptionOnGui(activityContext,applicationName,jsonException);
+                ExceptionUtils19.handleExceptionOnGui19(activityContext,applicationName,jsonException);
             }
         }
     }
