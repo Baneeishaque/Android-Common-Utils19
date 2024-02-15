@@ -6,9 +6,6 @@ include ':tests19'
 include ':Utils16:common16'
 project(':Utils16:common16').projectDir = new File(settingsDir, './Utils17/Utils16/common16')
 
-include ':Utils16:tests16'
-project(':Utils16:tests16').projectDir = new File(settingsDir, './Utils17/Utils16/tests16')
-
 include ':Utils14:common14'
 project(':Utils14:common14').projectDir = new File(settingsDir, './Utils17/Utils16/Utils14/common14')
 

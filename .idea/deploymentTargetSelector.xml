@@ -2,9 +2,6 @@
 <project version="4">
   <component name="deploymentTargetSelector">
     <selectionStates>
-      <SelectionState runConfigName="Utils16.tests16">
-        <option name="selectionMode" value="DROPDOWN" />
-      </SelectionState>
       <SelectionState runConfigName="tests19">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
