@@ -21,6 +21,9 @@ allprojects {
         google()
         mavenCentral()
         maven { url 'https://jitpack.io' }
+        maven {
+            url "https://nexus.web.cern.ch/nexus/content/groups/public/"
+        }
         jcenter()
     }
 }
