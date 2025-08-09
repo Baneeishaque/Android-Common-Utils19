@@ -24,7 +24,9 @@ allprojects {
         maven {
             url "https://nexus.web.cern.ch/nexus/content/groups/public/"
         }
-        jcenter()
+        maven {
+            url "https://artifactory.appodeal.com/appodeal-public"
+        }
     }
 }
 
