@@ -1,15 +1,30 @@
-include ':Utils19:common19'
-project(':Utils19:common19').projectDir = new File(settingsDir, './common19')
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+        google()
+        mavenCentral()
+        maven { url 'https://jitpack.io' }
+        maven {
+            url "https://nexus.web.cern.ch/nexus/content/groups/public/"
+        }
+        maven {
+            url "https://artifactory.appodeal.com/appodeal-public"
+        }
+    }
+}
+
+include ':common19'
+project(':common19').projectDir = new File(settingsDir, './common19')
 
 include ':tests19'
 
-include ':Utils17:common17'
+include ':common17'
 
-include ':Utils16:common16'
-project(':Utils16:common16').projectDir = new File(settingsDir, './Utils17/Utils16/common16')
+include ':common16'
+project(':common16').projectDir = new File(settingsDir, './Utils17/Utils16/common16')
 
-include ':Utils14:common14'
-project(':Utils14:common14').projectDir = new File(settingsDir, './Utils17/Utils16/Utils14/common14')
+include ':common14'
+project(':common14').projectDir = new File(settingsDir, './Utils17/Utils16/Utils14/common14')
 
-include ':Resources:common'
-project(':Resources:common').projectDir = new File(settingsDir, './Utils17/Utils16/Utils14/Resources/common')
+include ':common_resources'
+project(':common_resources').projectDir = new File(settingsDir, './Utils17/Utils16/Utils14/Resources/common')
