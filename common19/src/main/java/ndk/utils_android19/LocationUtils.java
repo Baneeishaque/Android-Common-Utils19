@@ -83,7 +83,6 @@ public class LocationUtils {
             return false;
         }
 
-        //don't start listeners if no provider is enabled
         if (!gps_enabled && !network_enabled) {
             return false;
         }

@@ -91,7 +91,6 @@ public class CheckAndUpdateTask extends AsyncTask<Void, Void, String[]> {
 
                         ToastUtils1.shortToast(currentActivity, "Latest Version...");
                     }
-                    // After completing http call will close this activity and launch main activity
                     if (tabIndexFlag) {
 
                         //TODO : Tab Index with Other extras
