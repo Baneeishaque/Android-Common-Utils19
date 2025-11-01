@@ -6,7 +6,6 @@ import static ndk.utils_android16.update.UpdateApplication.updateApplication;
 import android.os.AsyncTask;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.util.Pair;
 
 import org.json.JSONArray;
 import org.json.JSONException;
