@@ -1,4 +1,5 @@
 package ndk.utils_android19.activities;
+import java.util.Objects;
 
 import ndk.utils_android1.ErrorUtils;
 import ndk.utils_android16.constants.IntentExtendedDataItemNames;
@@ -22,7 +23,7 @@ public class LoginBundleActivity extends LoginBaseActivity {
 
         try {
 
-            return Class.forName(getIntent().getStringExtra(IntentExtendedDataItemNames.INTENT_EXTENDED_DATA_ITEM_NAME_NEXT_ACTIVITY_CLASS));
+            return Class.forName(Objects.requireNonNull(getIntent().getStringExtra(IntentExtendedDataItemNames.INTENT_EXTENDED_DATA_ITEM_NAME_NEXT_ACTIVITY_CLASS)));
 
         } catch (ClassNotFoundException e) {
 
