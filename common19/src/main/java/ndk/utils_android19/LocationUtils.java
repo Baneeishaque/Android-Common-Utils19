@@ -80,10 +80,12 @@ public class LocationUtils {
             }
         } catch (Exception ex) {
             ErrorUtils.displayException(context, ex, applicationName);
+
             return false;
         }
 
         if (!gps_enabled && !network_enabled) {
+
             return false;
         }
         try {
@@ -93,6 +95,7 @@ public class LocationUtils {
                 lm.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, locationListenerNetwork);
         } catch (SecurityException ex) {
             ErrorUtils.displayException(context, ex, applicationName);
+
             return false;
         }
         timer1 = new Timer();

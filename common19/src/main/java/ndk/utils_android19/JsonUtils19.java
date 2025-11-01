@@ -61,7 +61,6 @@ public class JsonUtils19 extends JsonUtils {
 
                 ErrorUtils.displayException(applicationContext, jsonException, applicationName);
             }
-
         }
     }
 }

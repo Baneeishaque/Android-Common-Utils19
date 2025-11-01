@@ -1,4 +1,5 @@
 package ndk.utils_android19.activities;
+
 import java.util.Objects;
 
 import ndk.utils_android1.ErrorUtils;
