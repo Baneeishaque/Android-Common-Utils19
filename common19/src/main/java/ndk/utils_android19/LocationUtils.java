@@ -84,7 +84,7 @@ public class LocationUtils {
             return false;
         }
 
-        if (!gps_enabled && !network_enabled) {
+        if ((!gps_enabled) && (!network_enabled)) {
 
             return false;
         }
