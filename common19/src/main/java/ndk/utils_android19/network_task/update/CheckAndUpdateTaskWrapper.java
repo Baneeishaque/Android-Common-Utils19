@@ -1,7 +1,6 @@
 package ndk.utils_android19.network_task.update;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.util.Pair;
 
 import ndk.utils_android19.models.PairOfStringsModel;
 
