@@ -46,7 +46,7 @@ public class CheckAndUpdateTask extends AsyncTask<Void, Void, String[]> {
     @Override
     protected String[] doInBackground(Void... params) {
 
-        return UpdateUtils.getServerVersion(URL, applicationName, currentActivity);
+        return UpdateUtils.getServerVersion(URL, applicationName, currentActivity, false);
     }
 
     @Override
@@ -79,7 +79,7 @@ public class CheckAndUpdateTask extends AsyncTask<Void, Void, String[]> {
 
             if (ServerUtils.checkSystemStatus(currentActivity, tempJsonObject.getString("system_status"), applicationName)) {
 
-                if (Integer.parseInt(tempJsonObject.getString("version_code")) != UpdateUtils.getVersionCode(currentActivity, applicationName) || Float.parseFloat(tempJsonObject.getString("version_name")) != UpdateUtils.getVersionName(currentActivity, applicationName)) {
+                if (Integer.parseInt(tempJsonObject.getString("version_code")) != UpdateUtils.getVersionCode(currentActivity, applicationName, true) || Float.parseFloat(tempJsonObject.getString("version_name")) != UpdateUtils.getVersionName(currentActivity, applicationName, true)) {
 
                     updateApplication(applicationName, currentActivity, Float.parseFloat(tempJsonObject.getString("version_name")), updateUrl);
 

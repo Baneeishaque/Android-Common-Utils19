@@ -7,22 +7,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.firestore.FirebaseFirestore;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import ndk.utils_android1.ExceptionUtils1;
-import ndk.utils_android1.LogUtils1;
-import ndk.utils_android1.NetworkUtils1;
-import ndk.utils_android1.ToastUtils1;
-import ndk.utils_android1.UpdateUtils;
-import ndk.utils_android14.ActivityUtils14;
-import ndk.utils_android16.ServerUtils;
-import ndk.utils_android19.ActivityUtils19;
 import ndk.utils_android19.models.PairOfStringsModel;
-
-import static ndk.utils_android1.NetworkUtils1.displayFriendlyExceptionMessage;
-import static ndk.utils_android16.update.UpdateApplication.updateApplication;
 
 //TODO : Not compatiable with SDK 14
 // import static ndk.utils_android14.UpdateUtils14.getServerVersionFireStore;
@@ -82,69 +67,5 @@ public class CheckAndUpdateTaskFireStore extends AsyncTask<Void, Void, String[]>
 
     @Override
     protected void onPostExecute(final String[] networkActionResponseArray) {
-
-        NetworkUtils1.displayNetworkActionResponse(applicationName, networkActionResponseArray, currentActivity);
-
-        if (networkActionResponseArray[0].equals("1")) {
-
-            displayFriendlyExceptionMessage(currentActivity, networkActionResponseArray[1]);
-            currentActivity.finish();
-
-        } else {
-
-            try {
-
-                JSONArray jsonArray = new JSONArray(networkActionResponseArray[1]);
-                checkAndUpdate(jsonArray);
-
-            } catch (JSONException e) {
-
-                ExceptionUtils1.handleExceptionOnGui(currentActivity, applicationName, e);
-            }
-        }
-    }
-
-    public void checkAndUpdate(JSONArray jsonArray) {
-
-        try {
-            JSONObject tempJsonObject = jsonArray.getJSONObject(0);
-
-            if (ServerUtils.checkSystemStatus(currentActivity, tempJsonObject.getString("system_status"), applicationName)) {
-
-                if (Integer.parseInt(tempJsonObject.getString("version_code")) != UpdateUtils.getVersionCode(currentActivity, applicationName) || Float.parseFloat(tempJsonObject.getString("version_name")) != UpdateUtils.getVersionName(currentActivity, applicationName)) {
-
-                    updateApplication(applicationName, currentActivity, Float.parseFloat(tempJsonObject.getString("version_name")), updateUrl);
-
-                } else {
-
-                    LogUtils1.debug(applicationName, "Latest Version...", applicationContext);
-
-                    if (!securityFlag) {
-
-                        ToastUtils1.shortToast(currentActivity, "Latest Version...");
-                    }
-                    // After completing http call will close this activity and launch main activity
-                    if (tabIndexFlag) {
-
-                        //TODO : Tab Index with Other extras
-                        ActivityUtils19.startActivityWithFinishAndTabIndex(currentActivity, nextActivity, tabIndex);
-
-                    } else {
-
-                        if (nextActivityExtras.length == 0) {
-
-                            ActivityUtils14.startActivityForClassWithFinish(currentActivity, nextActivity);
-
-                        } else {
-
-                            ActivityUtils19.startActivityWithStringExtrasAndFinish(currentActivity, nextActivity, nextActivityExtras);
-                        }
-                    }
-                }
-            }
-        } catch (JSONException e) {
-
-            ExceptionUtils1.handleExceptionOnGui(currentActivity, applicationName, e);
-        }
     }
 }
