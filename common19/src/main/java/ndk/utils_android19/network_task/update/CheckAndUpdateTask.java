@@ -86,7 +86,7 @@ public class CheckAndUpdateTask extends AsyncTask<Void, Void, String[]> {
 
                 } else {
 
-                    LogUtils1.debug(applicationName, "Latest Version...", currentActivity);
+                    LogUtils1.debugOnGui(applicationName, "Latest Version...", currentActivity);
 
                     if (!securityFlag) {
 
