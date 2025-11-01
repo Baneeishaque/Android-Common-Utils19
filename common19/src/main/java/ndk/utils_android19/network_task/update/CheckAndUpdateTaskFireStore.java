@@ -9,7 +9,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 import ndk.utils_android19.models.PairOfStringsModel;
 
-//TODO : Not compatiable with SDK 14
+// TODO : Not compatiable with SDK 14
 // import static ndk.utils_android14.UpdateUtils14.getServerVersionFireStore;
 
 public class CheckAndUpdateTaskFireStore extends AsyncTask<Void, Void, String[]> {
@@ -41,7 +41,7 @@ public class CheckAndUpdateTaskFireStore extends AsyncTask<Void, Void, String[]>
     @Override
     protected String[] doInBackground(Void... params) {
 
-        //TODO : Not compatiable with SDK 14
+        //TODO : Not compatible with SDK 14
         // FireStoreRequestResponse fireStoreRequestResponse = getServerVersionFireStore(firebaseFirestoreDb, applicationName, applicationContext);
         // switch (fireStoreRequestResponse.getStatus()) {
 
