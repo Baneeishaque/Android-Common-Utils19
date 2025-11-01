@@ -19,6 +19,7 @@ import java.util.Map;
 
 import ndk.utils_android1.DebugUtils;
 import ndk.utils_android1.ErrorUtils;
+import ndk.utils_android1.ExceptionUtils1;
 import ndk.utils_android1.LogUtils1;
 import ndk.utils_android1.ToastUtils1;
 import ndk.utils_android14.RestGetTask;
@@ -171,7 +172,7 @@ public abstract class LoginBaseActivity extends SharedPreferencesActivityWithCon
 
             } catch (JSONException e) {
 
-                ErrorUtils.displayException(currentActivityContext, e, configureApplicationName());
+                ExceptionUtils1.handleExceptionOnGui(currentActivityContext, configureApplicationName(), e);
             }
         };
     }

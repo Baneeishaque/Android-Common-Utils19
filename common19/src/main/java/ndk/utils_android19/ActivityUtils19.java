@@ -12,7 +12,7 @@ import java.util.Objects;
 
 import ndk.utils_android1.ActivityUtils1;
 import ndk.utils_android14.ActivityUtils14;
-import ndk.utils_android16.Alert_Dialog_Utils;
+import ndk.utils_android16.AlertDialogUtils;
 import ndk.utils_android19.models.PairOfStringsModel;
 
 public class ActivityUtils19 extends ActivityUtils14 {
@@ -40,10 +40,10 @@ public class ActivityUtils19 extends ActivityUtils14 {
     }
 
     public static void toHomeActivityWithConfirmation(Context context) {
-        new Alert_Dialog_Utils((dialog, which) -> {
+        new AlertDialogUtils((dialog, which) -> {
             toHomeActivity(context);
         }, (dialog, which) -> {
-        }).titled_Yes_No_Dialogue(context, "Do you wish to Exit?", "Caution!", true);
+        }).titledYesNoDialogue(context, "Caution!", "Do you wish to Exit?", true);
     }
 
     public static Intent constructIntentWithStringExtras(Context currentActivityContext, Class nextActivityClass, Pair[] nextActivityExtras) {

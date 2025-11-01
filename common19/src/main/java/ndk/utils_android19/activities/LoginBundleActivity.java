@@ -3,6 +3,7 @@ package ndk.utils_android19.activities;
 import java.util.Objects;
 
 import ndk.utils_android1.ErrorUtils;
+import ndk.utils_android1.ExceptionUtils1;
 import ndk.utils_android16.constants.IntentExtendedDataItemNames;
 
 public class LoginBundleActivity extends LoginBaseActivity {
@@ -28,7 +29,7 @@ public class LoginBundleActivity extends LoginBaseActivity {
 
         } catch (ClassNotFoundException e) {
 
-            ErrorUtils.displayException(this, e, configureApplicationName());
+            ExceptionUtils1.handleExceptionOnGui(this, configureApplicationName(), e);
             return null;
         }
     }

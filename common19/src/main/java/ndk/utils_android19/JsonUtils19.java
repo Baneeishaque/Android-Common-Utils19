@@ -11,6 +11,7 @@ import java.util.Map;
 import java.util.Objects;
 
 import ndk.utils_android1.ErrorUtils;
+import ndk.utils_android1.ExceptionUtils1;
 import ndk.utils_android1.LogUtils1;
 import ndk.utils_android16.JsonUtils;
 
@@ -36,7 +37,7 @@ public class JsonUtils19 extends JsonUtils {
 
             } catch (JSONException jsonException) {
 
-                ErrorUtils.displayException(currentApplicationContext, jsonException, applicationName);
+                ExceptionUtils1.handleExceptionOnGui(currentApplicationContext, applicationName, jsonException);
             }
         }
     }
@@ -59,7 +60,7 @@ public class JsonUtils19 extends JsonUtils {
 
             } catch (JSONException jsonException) {
 
-                ErrorUtils.displayException(applicationContext, jsonException, applicationName);
+                ExceptionUtils1.handleExceptionOnGui(applicationContext, applicationName, jsonException);
             }
         }
     }

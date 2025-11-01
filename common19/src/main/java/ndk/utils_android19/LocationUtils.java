@@ -10,6 +10,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import ndk.utils_android1.ErrorUtils;
+import ndk.utils_android1.ExceptionUtils1;
 import ndk.utils_android16.SnackbarUtils16;
 
 public class LocationUtils {
@@ -69,7 +70,7 @@ public class LocationUtils {
             }
         } catch (Exception ex) {
 
-            ErrorUtils.displayException(context, ex, applicationName);
+            ExceptionUtils1.handleExceptionOnGui(context, applicationName, ex);
             return false;
         }
         try {
@@ -79,8 +80,8 @@ public class LocationUtils {
                 return false;
             }
         } catch (Exception ex) {
-            ErrorUtils.displayException(context, ex, applicationName);
 
+            ExceptionUtils1.handleExceptionOnGui(context, applicationName, ex);
             return false;
         }
 
@@ -94,8 +95,8 @@ public class LocationUtils {
             if (network_enabled)
                 lm.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, locationListenerNetwork);
         } catch (SecurityException ex) {
-            ErrorUtils.displayException(context, ex, applicationName);
 
+            ExceptionUtils1.handleExceptionOnGui(context, applicationName, ex);
             return false;
         }
         timer1 = new Timer();

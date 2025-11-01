@@ -11,7 +11,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import ndk.utils_android1.ErrorUtils;
+import ndk.utils_android1.ExceptionUtils1;
 import ndk.utils_android1.LogUtils1;
 import ndk.utils_android1.NetworkUtils1;
 import ndk.utils_android1.ToastUtils1;
@@ -67,7 +67,7 @@ public class CheckAndUpdateTask extends AsyncTask<Void, Void, String[]> {
 
             } catch (JSONException e) {
 
-                ErrorUtils.displayException(currentActivity, e, applicationName);
+                ExceptionUtils1.handleExceptionOnGui(currentActivity, applicationName, e);
             }
         }
     }
@@ -79,7 +79,7 @@ public class CheckAndUpdateTask extends AsyncTask<Void, Void, String[]> {
 
             if (ServerUtils.checkSystemStatus(currentActivity, tempJsonObject.getString("system_status"), applicationName)) {
 
-                if (Integer.parseInt(tempJsonObject.getString("version_code")) != UpdateUtils.getVersionCode(currentActivity) || Float.parseFloat(tempJsonObject.getString("version_name")) != UpdateUtils.getVersionName(currentActivity)) {
+                if (Integer.parseInt(tempJsonObject.getString("version_code")) != UpdateUtils.getVersionCode(currentActivity, applicationName) || Float.parseFloat(tempJsonObject.getString("version_name")) != UpdateUtils.getVersionName(currentActivity, applicationName)) {
 
                     updateApplication(applicationName, currentActivity, Float.parseFloat(tempJsonObject.getString("version_name")), updateUrl);
 
@@ -111,7 +111,7 @@ public class CheckAndUpdateTask extends AsyncTask<Void, Void, String[]> {
             }
         } catch (JSONException e) {
 
-            ErrorUtils.displayException(currentActivity, e, applicationName);
+            ExceptionUtils1.handleExceptionOnGui(currentActivity, applicationName, e);
         }
     }
 }

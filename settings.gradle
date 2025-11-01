@@ -8,8 +8,8 @@ include ':Utils17:common17'
 include ':Utils16:common16'
 project(':Utils16:common16').projectDir = new File(settingsDir, './Utils17/Utils16/common16')
 
-include ':Utils14:common14'
-project(':Utils14:common14').projectDir = new File(settingsDir, './Utils17/Utils16/Utils14/common14')
+include ':common14'
+project(':common14').projectDir = new File(settingsDir, './Utils17/Utils16/Utils14/common14')
 
-include ':Resources:common'
-project(':Resources:common').projectDir = new File(settingsDir, './Utils17/Utils16/Utils14/Resources/common')
+include ':common_resources'
+project(':common_resources').projectDir = new File(settingsDir, './Utils17/Utils16/Utils14/Resources/common')
