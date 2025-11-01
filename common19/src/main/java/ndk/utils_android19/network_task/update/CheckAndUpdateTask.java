@@ -64,8 +64,7 @@ public class CheckAndUpdateTask extends AsyncTask<Void, Void, String[]> {
 
             try {
 
-                JSONArray jsonArray = new JSONArray(networkActionResponseArray[1]);
-                checkAndUpdate(jsonArray);
+                checkAndUpdate(new JSONArray(networkActionResponseArray[1]));
 
             } catch (JSONException e) {
 
