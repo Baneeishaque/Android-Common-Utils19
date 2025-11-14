@@ -78,6 +78,11 @@ android {
             setIgnore(true)
         }
     }
+
+    buildFeatures {
+        viewBinding = true
+    }
+
     lintOptions {
         checkReleaseBuilds false
         abortOnError false
