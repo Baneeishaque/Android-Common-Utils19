@@ -114,7 +114,7 @@ dependencies {
     implementation project(path: ':common14')
 
     implementation 'junit:junit:4.13.2'
-    implementation 'androidx.test.ext:junit:1.2.1'
+    implementation 'androidx.test.ext:junit:1.3.0'
     implementation 'androidx.test:rules:1.5.0'
 }
 
