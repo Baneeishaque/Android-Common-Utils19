@@ -31,6 +31,13 @@ import ndk.utils_android1.ToastUtils1;
 
 public class PdfUtils {
 
+    /**
+     * Create a timestamped PDF file under Documents/pdfdemo containing sample content (paragraphs, a table, a list, and an internal "Back To Top" link).
+     *
+     * @param TAG     log tag used for informational messages
+     * @param context Android Context used for showing toasts
+     * @return true if the PDF file was created and written successfully, false otherwise
+     */
     boolean createPdf(String TAG, Context context) {
 
         File docsFolder = new File(Environment.getExternalStorageDirectory() + "/Documents");
