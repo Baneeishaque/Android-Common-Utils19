@@ -26,6 +26,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 
 import ndk.utils_android1.ToastUtils1;
 
@@ -48,13 +49,12 @@ public class PdfUtils {
 
             //Create time stamp
             Date date = new Date();
-            String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(date);
+            String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.US).format(date);
 
             File sample_pdf = new File(pdfFolder + "/" + timeStamp + ".pdf");
 
 
-            try {
-                FileOutputStream output = new FileOutputStream(sample_pdf);
+            try (FileOutputStream output = new FileOutputStream(sample_pdf)) {
 
                 //Step 1 - Create PdfWriter
                 PdfWriter writer = new PdfWriter(output);
@@ -70,7 +70,6 @@ public class PdfUtils {
 
                 // Create fonts
                 PdfFont courierFont = PdfFontFactory.createFont(com.itextpdf.io.font.constants.StandardFonts.COURIER);
-                PdfFont helveticaFont = PdfFontFactory.createFont(com.itextpdf.io.font.constants.StandardFonts.HELVETICA);
                 PdfFont helveticaBoldFont = PdfFontFactory.createFont(com.itextpdf.io.font.constants.StandardFonts.HELVETICA_BOLD);
 
                 // Create link for "BackToTop" anchor
