@@ -109,6 +109,7 @@ dependencies {
 
     testImplementation 'junit:junit:4.13.2'
 
+    implementation project(path: ':Utils17:common17')
     implementation project(path: ':Utils16:common16')
     implementation project(path: ':common14')
 
