@@ -4,28 +4,29 @@ import android.content.Context;
 import android.os.Environment;
 import android.util.Log;
 
-import com.itextpdf.text.Anchor;
-import com.itextpdf.text.Chapter;
-import com.itextpdf.text.Document;
-import com.itextpdf.text.DocumentException;
-import com.itextpdf.text.Font;
-import com.itextpdf.text.FontFactory;
-import com.itextpdf.text.ListItem;
-import com.itextpdf.text.PageSize;
-import com.itextpdf.text.Paragraph;
-import com.itextpdf.text.Phrase;
-import com.itextpdf.text.Section;
-import com.itextpdf.text.pdf.CMYKColor;
-import com.itextpdf.text.pdf.PdfPCell;
-import com.itextpdf.text.pdf.PdfPTable;
-import com.itextpdf.text.pdf.PdfWriter;
+import com.itextpdf.kernel.colors.DeviceCmyk;
+import com.itextpdf.kernel.font.PdfFont;
+import com.itextpdf.kernel.font.PdfFontFactory;
+import com.itextpdf.kernel.geom.PageSize;
+import com.itextpdf.kernel.pdf.PdfDocument;
+import com.itextpdf.kernel.pdf.PdfWriter;
+import com.itextpdf.kernel.pdf.action.PdfAction;
+import com.itextpdf.layout.Document;
+import com.itextpdf.layout.element.Cell;
+import com.itextpdf.layout.element.Link;
+import com.itextpdf.layout.element.List;
+import com.itextpdf.layout.element.ListItem;
+import com.itextpdf.layout.element.Paragraph;
+import com.itextpdf.layout.element.Table;
+import com.itextpdf.layout.properties.UnitValue;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.OutputStream;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 
 import ndk.utils_android1.ToastUtils1;
 
@@ -48,87 +49,97 @@ public class PdfUtils {
 
             //Create time stamp
             Date date = new Date();
-            String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(date);
+            String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.US).format(date);
 
             File sample_pdf = new File(pdfFolder + "/" + timeStamp + ".pdf");
 
 
-            try {
-                OutputStream output = new FileOutputStream(sample_pdf);
+            try (FileOutputStream output = new FileOutputStream(sample_pdf)) {
 
-                //Step 1
-//                Document document = new Document();
-                Document document = new Document(PageSize.A4, 50, 50, 50, 50);
+                //Step 1 - Create PdfWriter
+                PdfWriter writer = new PdfWriter(output);
 
-                //Step 2
-                PdfWriter.getInstance(document, output);
-                //Step 3
-                document.open();
+                //Step 2 - Create PdfDocument
+                PdfDocument pdfDoc = new PdfDocument(writer);
 
-                //Step 4 Add content
+                //Step 3 - Create Document with page size
+                Document document = new Document(pdfDoc, PageSize.A4);
+                document.setMargins(50, 50, 50, 50);
 
-                Anchor anchorTarget = new Anchor("First page of the document.");
-                anchorTarget.setName("BackToTop");
-                Paragraph paragraph1 = new Paragraph();
+                //Step 4 - Add content
 
-                paragraph1.setSpacingBefore(50);
+                // Create fonts
+                PdfFont courierFont = PdfFontFactory.createFont(com.itextpdf.io.font.constants.StandardFonts.COURIER);
+                PdfFont helveticaBoldFont = PdfFontFactory.createFont(com.itextpdf.io.font.constants.StandardFonts.HELVETICA_BOLD);
 
-                paragraph1.add(anchorTarget);
-                document.add(paragraph1);
+                // Create link for "BackToTop" anchor
+                String backToTopDestination = "BackToTop";
+                Paragraph anchorParagraph = new Paragraph("First page of the document.")
+                        .setDestination(backToTopDestination)
+                        .setMarginTop(50);
+                document.add(anchorParagraph);
 
-                document.add(new Paragraph("Some more text on the first page with different color and font type.", FontFactory.getFont(FontFactory.COURIER, 14, Font.BOLD, new CMYKColor(0, 255, 0, 0))));
+                // Add paragraph with custom font and color
+                Paragraph paragraph2 = new Paragraph("Some more text on the first page with different color and font type.")
+                        .setFont(courierFont)
+                        .setFontSize(14)
+                        .setBold()
+                        .setFontColor(new DeviceCmyk(0f, 1f, 0f, 0f));
+                document.add(paragraph2);
 
-                Paragraph title1 = new Paragraph("Chapter 1", FontFactory.getFont(FontFactory.HELVETICA, 18, Font.BOLDITALIC, new CMYKColor(0, 255, 255, 17)));
+                // Chapter 1 title
+                Paragraph title1 = new Paragraph("Chapter 1")
+                        .setFont(helveticaBoldFont)
+                        .setFontSize(18)
+                        .setBold()
+                        .setItalic()
+                        .setFontColor(new DeviceCmyk(0f, 1f, 1f, 0.067f))
+                        .setMarginTop(20);
+                document.add(title1);
 
-                Chapter chapter1 = new Chapter(title1, 1);
-
-                chapter1.setNumberDepth(0);
-
-                Paragraph title11 = new Paragraph("This is Section 1 in Chapter 1", FontFactory.getFont(FontFactory.HELVETICA, 16, Font.BOLD, new CMYKColor(0, 255, 255, 17)));
-
-                Section section1 = chapter1.addSection(title11);
+                // Section 1 title
+                Paragraph title11 = new Paragraph("This is Section 1 in Chapter 1")
+                        .setFont(helveticaBoldFont)
+                        .setFontSize(16)
+                        .setBold()
+                        .setFontColor(new DeviceCmyk(0f, 1f, 1f, 0.067f))
+                        .setMarginTop(10);
+                document.add(title11);
 
                 Paragraph someSectionText = new Paragraph("This text comes as part of section 1 of chapter 1.");
-
-                section1.add(someSectionText);
+                document.add(someSectionText);
 
                 someSectionText = new Paragraph("Following is a 3 X 2 table.");
+                document.add(someSectionText);
 
-                section1.add(someSectionText);
+                // Create table with 3 columns
+                float[] columnWidths = {1, 1, 1};
+                Table t = new Table(UnitValue.createPercentArray(columnWidths));
+                t.setMarginTop(25);
+                t.setMarginBottom(25);
 
-                PdfPTable t = new PdfPTable(3);
-
-                t.setSpacingBefore(25);
-
-                t.setSpacingAfter(25);
-
-                PdfPCell c1 = new PdfPCell(new Phrase("Header1"));
-
+                // Add header cells
+                Cell c1 = new Cell().add(new Paragraph("Header1"));
                 t.addCell(c1);
 
-                PdfPCell c2 = new PdfPCell(new Phrase("Header2"));
-
+                Cell c2 = new Cell().add(new Paragraph("Header2"));
                 t.addCell(c2);
 
-                PdfPCell c3 = new PdfPCell(new Phrase("Header3"));
-
+                Cell c3 = new Cell().add(new Paragraph("Header3"));
                 t.addCell(c3);
 
-                t.addCell("1.1");
+                // Add data cells
+                t.addCell(new Cell().add(new Paragraph("1.1")));
+                t.addCell(new Cell().add(new Paragraph("1.2")));
+                t.addCell(new Cell().add(new Paragraph("1.3")));
 
-                t.addCell("1.2");
+                document.add(t);
 
-                t.addCell("1.3");
-
-                section1.add(t);
-
-                com.itextpdf.text.List l = new com.itextpdf.text.List(true, false, 10);
-
+                // Create list
+                List l = new List();
                 l.add(new ListItem("First item of list"));
-
                 l.add(new ListItem("Second item of list"));
-
-                section1.add(l);
+                document.add(l);
 
 //                Image image2 = null;
 //                try {
@@ -141,23 +152,18 @@ public class PdfUtils {
 //
 //                section1.add(image2);
 
-                Paragraph title2 = new Paragraph("Using Anchor",
+                Paragraph title2 = new Paragraph("Using Anchor")
+                        .setFont(helveticaBoldFont)
+                        .setFontSize(16)
+                        .setBold()
+                        .setFontColor(new DeviceCmyk(0f, 1f, 0f, 0f))
+                        .setMarginTop(5000);
+                document.add(title2);
 
-                        FontFactory.getFont(FontFactory.HELVETICA, 16, Font.BOLD,
-
-                                new CMYKColor(0, 255, 0, 0)));
-
-                section1.add(title2);
-
-                title2.setSpacingBefore(5000);
-
-                Anchor anchor2 = new Anchor("Back To Top");
-
-                anchor2.setReference("#BackToTop");
-
-                section1.add(anchor2);
-
-                document.add(chapter1);
+                // Create link back to top
+                Link backToTopLink = new Link("Back To Top", PdfAction.createGoTo(backToTopDestination));
+                Paragraph linkParagraph = new Paragraph().add(backToTopLink);
+                document.add(linkParagraph);
 
                 document.add(new Paragraph("mSubjectEditText.getText().toString()"));
                 document.add(new Paragraph("mBodyEditText.getText().toString()"));
@@ -166,7 +172,7 @@ public class PdfUtils {
                 document.close();
                 return true;
 
-            } catch (DocumentException | FileNotFoundException e) {
+            } catch (IOException | FileNotFoundException e) {
                 e.printStackTrace();
                 Log.i(TAG, "Pdf Creation failure " + e.getLocalizedMessage());
                 ToastUtils1.longToast(context, "Pdf fail");
